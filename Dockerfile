@@ -17,9 +17,6 @@ RUN dpkg --configure -a
 ## Python
 RUN apt-get install -y python3 python3-dev python3-pip
 RUN python3 -m pip install --upgrade pip
-RUN apt-get install -y python python-dev python-pip
-RUN python -m pip install --upgrade pip
-
 
 ## SUMO Dependencies
 # Swig
@@ -37,5 +34,4 @@ RUN apt-get install -y libfox-1.6-0 libfox-1.6-dev
 WORKDIR /home
 # RUN git clone https://github.com/eclipse/sumo.git
 RUN git clone -b setuptools https://github.com/bstriner/sumo-1.git sumo
-RUN cd sumo && mkdir build27 && cd build27 && cmake -DPython_ADDITIONAL_VERSIONS=2.7 -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target install_pylibsumo --config Release
 RUN cd sumo && mkdir build36 && cd build36 && cmake -DPython_ADDITIONAL_VERSIONS=3.6 -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target install_pylibsumo --config Release
